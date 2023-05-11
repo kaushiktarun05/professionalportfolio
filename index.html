@@ -136,24 +136,22 @@
 							
 							<div class="split style1">
 								<section>
-									<form method="post" action="#">
+									<form method="post" action="" name="ContactForm" id="ContactForm">
 										<div class="fields">
 											<div class="field half">
 												<label for="name">Name</label>
-												<input type="text" name="name" id="name" />
+												<input type="text" class="form-control" placeholder="Your Sweet Name" name="name" id="name"/>
 											</div>
 											<div class="field half">
 												<label for="email">Email</label>
-												<input type="text" name="email" id="email" />
+												<input type="email" class="form-control" placeholder="eg:kaushiktarun2003@gmail.com" name="email" id="email" />
 											</div>
 											<div class="field">
 												<label for="message">Message</label>
-												<textarea name="message" id="message" rows="5"></textarea>
+												<textarea class="form-control" name="message" id="message" rows="5" placeholder="Comments...."></textarea>
 											</div>
 										</div>
-										<ul class="actions">
-											<li><a href="" class="button submit">Send Message</a></li>
-										</ul>
+										<input type="submit" value="Submit" class="button btn-primary" id="submit"/>
 									</form>
 								</section>
 								<section>
@@ -195,6 +193,18 @@
 			</footer>
 
 		<!-- Scripts -->
+			<script>
+			const scriptURL = 'https://script.google.com/macros/s/AKfycbw41YdbCQm5d61dYtk2Tfk7IDOISu9frtmoBxmoiEk85FUK5re5uxYzrUGl2gF6FMoznw/exec'
+			const form = document.forms['ContactForm']
+		  
+			form.addEventListener('submit', e => {
+			  e.preventDefault()
+			  fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+				.then(response => alert("Thank you! your form is submitted successfully." ))
+				.then(() => {  window.location.reload(); })
+				.catch(error => console.error('Error!', error.message))
+			})
+			</script>
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.scrollex.min.js"></script>
 			<script src="assets/js/jquery.scrolly.min.js"></script>
